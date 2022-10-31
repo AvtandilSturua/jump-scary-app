@@ -1,24 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import SpookyPic from "./Components/spooky.jpg";
+import Horror from "./JumpScary.js";
+import Voice from "./Components/Scream.mp3";
+import { useState, useEffect, useRef } from "react";
+import Voice2 from "./Components/AnotherScream.mp3";
 
 function App() {
+  const [isActive, setIsActive] = useState(false);
+  const changeBackground = () => {
+    setIsActive(true);
+    new Audio(Voice2).play();
+  };
+  const screamAgain = () => {
+    new Audio(Voice).play();
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+    <>
+      <div className="main-info">
+        <button className="haha" onClick={changeBackground}>
+          Welcome to my portfolio.
+        </button>
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          DISCLAIMER! <br />
+          Content is not intended for the faint of heart or children either It
+          is designed as a joke
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+        <div className={`random ${isActive && "main"}`}>
+          <div className="pic">
+            <img src={SpookyPic} />
+            <p>Sorry About that :/</p>
+            <button onClick={screamAgain} className="sorry">
+              Click for relax
+            </button>
+          </div>
+        </div>
+      </div>
+    </>
   );
 }
 
